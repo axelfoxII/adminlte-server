@@ -9,7 +9,7 @@ const {validarJWT} = require('../helpers/validar-jwt');
 const { validarCampos } = require('../middlewares/validar-campos');
 
 const router = Router();
-router.post('/', [
+router.post('', [
   check('email','El email es obligatorio').isEmail(),
   check('password', 'El password es obligatorio').not().isEmpty(),
   validarCampos
@@ -17,14 +17,14 @@ router.post('/', [
 login
 );
 
-router.post('/google', [
+router.post('google', [
   check('token', 'El token de google es obligatorio').not().isEmpty(),
   validarCampos
 ],
 googleSignIn
 );
 
-router.get('/renew', validarJWT, renewToken);
+router.get('renew', validarJWT, renewToken);
 
 
 
